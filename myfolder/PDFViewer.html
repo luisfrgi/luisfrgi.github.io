@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test file</title>
+
+
+	<script>
+        // Cambiar la página desde JavaScript
+        function goToPage(pageNumber) {
+            const iframe = document.getElementById('pdfViewer');
+            const src = "Word Test.pdf#page=${pageNumber}";
+			      alert(src);
+            iframe.src = src;
+			//iframe.contentWindow.location.reload(true);
+        }
+		
+		function irAPagina() {
+			const iframe = document.getElementById('pdfViewer');
+            const pag = document.getElementById('pagina').value;
+			//goToPage(pag);
+            const src = 'Word Test.pdf#page=' + pag;
+			alert(src);			
+            //var separator = src.includes('?') ? '&' : '?';
+			//iframe.src = src + separator + 'refresh=' + + new Date().getTime();
+			//iframe.src = src + '&t=' + new Date().getTime();
+			//alert(iframe.src);
+			//iframe.src = "WordBlanco.pdf";
+			iframe.src = "WordTest2.pdf#page=3";
+        }
+
+		//goToPage(2);
+        // Cambiar a la página 5 después de 3 segundos (ejemplo)
+        //setTimeout(() => goToPage(5), 3000);
+    </script>	
+
+	<script>
+		//window.onhashchange = function() {
+		  //location.reload();
+		//}
+	</script>
+</head>
+
+<body>
+
+	<script>
+		function refrescarIframe() {
+		  var iframe = document.getElementById('pdfViewer');
+		  var src = iframe.src;
+
+		  var hashIndex = src.indexOf('#');
+		  
+		  if (hashIndex !== -1) {
+			src = src.substring(0, hashIndex);
+		  }
+		  alert(src);
+		  //iframe.src=''
+		  //iframe.location.reload();
+		  iframe.src = src + '#page=' + 2;
+		 
+		  }
+	</script>
+ 
+
+ <h1>Visor PDF</h1>
+    <iframe 
+        id="pdfViewer" 
+        src="WordTest.pdf" 
+        width="100%" 
+        height="600px" 
+        frameborder="0">
+    </iframe>
+
+	<button onclick="refrescarIframe()">Refrescar Iframe</button>
+
+
+	<input id="pagina" type=text value="1">
+	<input type=button value="Ir a pagina" onclick="irAPagina()">
+</body>
+	
+
+</html>
